@@ -61,11 +61,13 @@ function destroy(req, res) {
         })
     }
 
+
+
     //Rimuoviamo il post
     datas.splice(datas.indexOf(oggettoSingolo), 1)
 
     //Restituiamo lo stato corretto
-    res.sendStatus(204)
+    res.sendStatus(204, console.log(datas))
 }
 
 module.exports = {index, show, store, update, modify, destroy}
