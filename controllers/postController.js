@@ -1,9 +1,22 @@
-const datas = require("../data/data.js")
+const datas = require("../data/data")
 
 
 function index(req, res) {
-    res.json(datas);
-}
+
+    //faccio coincidere filteredPosts con l'array iniziale
+    let objfilter = datas;
+
+    // Se la richiesta contiene un filtro(req.query.tag = true/false => booleano), allora filtriamo i post
+    if (req.query.tags) {
+        objfilter = datas.filter(
+            post => post.tags.includes(req.query.tags)
+        );
+    }
+
+    // restituisco l'array filteredPosts, filtrato o meno!
+    res.json(objfilter);
+};
+
 //show
 function show(req, res) {
 
@@ -49,7 +62,7 @@ function destroy(req, res) {
     }
 
     //Rimuoviamo il post
-    oggettoSingolo.splice(oggettoSingolo.indexOf(oggettoSingolo), 1)
+    datas.splice(datas.indexOf(oggettoSingolo), 1)
 
     //Restituiamo lo stato corretto
     res.sendStatus(204)
