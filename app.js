@@ -19,14 +19,16 @@ const app = express()
 const port = 3000
 const postRouter = require("./routers/posts")
 
-app.use(express.static('public'));
+app.use(express.json())
+app.use(express.static('public')); // per file statici
+app.use("/posts", postRouter) //richiamare le API 
 
-app.use("/posts", postRouter)
-
-app.use ("/", (req,res) => {
+app.use ("/", (req,res) => { 
     res.send("Il mio sito Blog")
 });
 
+
+// per attivare il server con la porta 3000
 app.listen (port, () => {
    console.log(`Le porte del mio server sono ${port}`)
 })
