@@ -5,7 +5,7 @@ function index(req, res) {
 
     //faccio coincidere filteredPosts con l'array iniziale
     let objfilter = datas;
-
+    // Pi()
     // Se la richiesta contiene un filtro(req.query.tag = true/false => booleano), allora filtriamo i post
     if (req.query.tags) {
         objfilter = datas.filter(post => post.tags.includes(req.query.tags));

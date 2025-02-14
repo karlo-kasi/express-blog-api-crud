@@ -18,18 +18,28 @@ const express = require("express")
 const app = express()
 const port = 3000
 const postRouter = require("./routers/posts")
+const errorsHandler = require("./middlewares/errorsHandler")
+const notFound = require("./middlewares/notFound")
 
-app.use(express.json())
+
+app.use(express.json()) // body parse
+
 app.use(express.static('public')); // per file statici
+
 app.use("/posts", postRouter) //richiamare le API 
 
-app.use ("/", (req,res) => { 
-    res.send("Il mio sito Blog")
-});
+
+// app.use("/", (req, res) => {
+//     res.send("Il mio sito Blog")
+// });
+
+
+app.use(notFound) // erorri nelle rotte 
+app.use(errorsHandler) // i possibili errori dell'applicazione.
 
 
 // per attivare il server con la porta 3000
-app.listen (port, () => {
-   console.log(`Le porte del mio server sono ${port}`)
+app.listen(port, () => {
+    console.log(`Le porte del mio server sono ${port}`)
 })
 
