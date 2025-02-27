@@ -17,9 +17,13 @@ In Show e Destroy, controllare se il parametro si riferisce ad un post esistente
 const express = require("express")
 const app = express()
 const port = 3000
+const cors = require("cors")
 const postRouter = require("./routers/posts")
+
+//middLewares
 const errorsHandler = require("./middlewares/errorsHandler")
 const notFound = require("./middlewares/notFound")
+
 
 
 app.use(express.json()) // body parse
