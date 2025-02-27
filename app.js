@@ -32,7 +32,9 @@ app.use(express.static('public')); // per file statici
 
 app.use("/posts", postRouter) //richiamare le API 
 
-
+app.use(cors({
+    origin: "http://localhost:5173/"
+}))
 // app.use("/", (req, res) => {
 //     res.send("Il mio sito Blog")
 // });
